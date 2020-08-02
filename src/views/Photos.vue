@@ -2,6 +2,7 @@
     <div v-if="selected_breed">
         <div class="head_photos">
             <h1>Photos of {{selected_breed}}</h1>
+            <div v-on:click="close()" class="close"></div>
         </div>   
         <div class="images">
             <img class="image" v-bind:src="image" v-for="image in images" :key="image">
@@ -17,7 +18,10 @@ export default {
     data: function() {
         let that = {
             selected_breed: this.$route.params.breed,
-            images: []
+            images: [],
+            close: function() {
+                this.$router.push({name: "Selector"})
+            }
         }
         fetch(`https://dog.ceo/api/breed/${this.$route.params.breed}/images/random/9`)
             .then(response => {
@@ -89,6 +93,33 @@ img.image {
   -webkit-column-count: 1;
   column-count:         1;
   }
+}
+
+.close {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+.close:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 3px;
+  background-color: #333;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
 }
 
 </style>

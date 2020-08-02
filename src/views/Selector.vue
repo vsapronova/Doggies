@@ -52,13 +52,6 @@ export default {
         return that
 
     },
-    
-    // methods: {
-    //     select: function(event) {
-    //         let breed_name = event.currentTarget.getAttribute("data-breed");
-    //         this.$router.push({name: "Photos", params: {breed: breed_name} })
-    //     }
-    // }
 }
 </script>
 
