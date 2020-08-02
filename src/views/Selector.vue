@@ -18,8 +18,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
     name: 'Selector',
     
@@ -39,7 +37,7 @@ export default {
                 let breeds = Object.keys(breeds_data).map(name => ({name: name, image: null, subbreeds: breeds_data[name]}))
                 that.breeds = breeds
                 that.breeds.forEach(breed => {
-                    fetch("https://dog.ceo/api/breed/" + breed.name + "/images/random")
+                    fetch(`https://dog.ceo/api/breed/${breed.name}/images/random`)
                     .then(response => {
                         response.json()
                         .then(json => {

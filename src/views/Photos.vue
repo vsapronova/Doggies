@@ -47,8 +47,6 @@ export default {
 }
 
 .images {
-    /* Prevent vertical gaps */
-    /* line-height: 0; */
     margin: 20px;
     -webkit-column-count: 3;
     -webkit-column-gap:   10px;
