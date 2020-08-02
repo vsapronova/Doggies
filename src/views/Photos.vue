@@ -39,7 +39,6 @@ export default {
     left: 0;
     z-index: 999;
     width: 100%;
-    height: 80px;
     background-color: white;
 }
 
@@ -61,6 +60,35 @@ export default {
 img.image {
     width: 100% !important;
     height: auto !important;
+}
+
+@media (max-width: 1200px) {
+  .images {
+  -moz-column-count:    4;
+  -webkit-column-count: 4;
+  column-count:         4;
+  }
+}
+@media (max-width: 1000px) {
+  .images {
+  -moz-column-count:    3;
+  -webkit-column-count: 3;
+  column-count:         3;
+  }
+}
+@media (max-width: 800px) {
+  .images {
+  -moz-column-count:    2;
+  -webkit-column-count: 2;
+  column-count:         2;
+  }
+}
+@media (max-width: 400px) {
+  .images {
+  -moz-column-count:    1;
+  -webkit-column-count: 1;
+  column-count:         1;
+  }
 }
 
 </style>
