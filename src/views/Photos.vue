@@ -1,6 +1,8 @@
 <template>
     <div v-if="selected_breed">
-        <h1>Photos of {{selected_breed}}</h1>
+        <div class="head_photos">
+            <h1>Photos of {{selected_breed}}</h1>
+        </div>   
         <div class="images">
             <img class="image" v-bind:src="image" v-for="image in images" :key="image">
         </div>
@@ -30,6 +32,16 @@ export default {
 </script>
 
 <style scoped>
+
+.head_photos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 80px;
+    background-color: white;
+}
 
 .images {
     /* Prevent vertical gaps */

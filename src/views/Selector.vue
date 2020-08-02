@@ -1,6 +1,9 @@
 <template>
 <div>
-    <h1>Select Breed</h1> 
+    <div class="head">
+        <h1>Select Breed</h1>
+    </div>
+     
     <div id="breeds_tiles">
         <div v-on:click="select($event)" class="tile" v-bind:data-breed="breed.name" v-for="breed in breeds" :key="breed.name">
             <div class="caption">{{ breed.name }}</div>
@@ -60,6 +63,17 @@ export default {
 </script>
 
 <style scoped>
+
+.head {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 80px;
+    background-color: white;
+}
+
 #breeds_tiles {
     display: grid;
     grid-gap: 15px;
@@ -67,6 +81,7 @@ export default {
     font-family: sans-serif;
     font-size: 18px;
     margin: 20px;
+    margin-top: 100px;
 }
 
 div.tile {
