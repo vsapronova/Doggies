@@ -1,7 +1,21 @@
 <template>
     <div v-if="selected_breed">
         <div class="head_photos">
-            <h1>Photos of {{selected_breed}}</h1>
+            <div>
+            <b-navbar type="light" variant="light">
+                <b-navbar-nav>
+                <b-navbar-brand mb-0 h1>Photos of {{selected_breed}}</b-navbar-brand>
+                <b-nav-item-dropdown  text="Select subbreed" right>
+                    <b-dropdown-item href="#" @click="select_all()">all</b-dropdown-item>
+                    <b-dropdown-item href="#" @click="select_sub()" v-bind:data-breed="subbreed" v-for="subbreed in subbreeds" :key="subbreed">{{ subbreed }}</b-dropdown-item>
+                </b-nav-item-dropdown>
+
+                </b-navbar-nav>
+            </b-navbar>
+            </div>
+
+            
+
             <div v-on:click="close()" class="close"></div>
         </div>   
         <div class="images">
@@ -19,10 +33,30 @@ export default {
         let that = {
             selected_breed: this.$route.params.breed,
             images: [],
+            subbreeds: [],
             close: function() {
                 this.$router.push({name: "Selector"})
+            },
+            select_sub: function() {
+                let breed_name = event.currentTarget.getAttribute("data-breed");
+                fetch(`https://dog.ceo/api/breed/${this.$route.params.breed}/${breed_name}/images/random/9`)
+                .then(response => {
+                    response.json()
+                    .then(json => {
+                        this.images = json.message
+                    }) 
+                });
+            },
+            select_all: function() {
+                fetch(`https://dog.ceo/api/breed/${this.$route.params.breed}/images/random/9`)
+                .then(response => {
+                    response.json()
+                    .then(json => {
+                        that.images = json.message
+                    }) 
+                });
             }
-        }
+        };
         fetch(`https://dog.ceo/api/breed/${this.$route.params.breed}/images/random/9`)
             .then(response => {
                 response.json()
@@ -30,6 +64,13 @@ export default {
                     that.images = json.message
                 }) 
             });
+        fetch(`https://dog.ceo/api/breed/${this.$route.params.breed}/list`)
+            .then(response => {
+                response.json()
+                .then(json => {
+                    that.subbreeds = json.message
+                })
+            })
         return that
     }
 }
