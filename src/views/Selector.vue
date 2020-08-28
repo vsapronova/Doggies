@@ -1,9 +1,14 @@
 <template>
 <div>
     <div class="head">
-        <h1>Select Breed</h1>
+        <div>
+            <b-navbar type="light" variant="light">
+                <b-navbar-nav>
+                <b-navbar-brand mb-0 h1>Select Breed</b-navbar-brand>
+                </b-navbar-nav>
+            </b-navbar>
+        </div>
     </div>
-     
     <div id="breeds_tiles">
         <div v-on:click="select($event)" class="tile" v-bind:data-breed="breed.name" v-for="breed in breeds" :key="breed.name">
             <div class="caption">{{ breed.name }}</div>
@@ -71,7 +76,7 @@ export default {
     font-family: sans-serif;
     font-size: 18px;
     margin: 20px;
-    margin-top: 100px;
+    margin-top: 55px;
 }
 
 div.tile {
